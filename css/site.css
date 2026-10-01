@@ -1,0 +1,688 @@
+/* ============================================================
+ *  site.css —— 通用组件与内页样式
+ *  不修改原有的 my-common.min.css 与 my-houseloan.min.css
+ * ============================================================ */
+
+/* ------------------------------------------------------------
+ * 1. 广告位容器
+ *    默认 display:none —— 没有内容填充时页面上不会出现空洞。
+ *    site.js 渲染时会加上 .ad-on。
+ * ---------------------------------------------------------- */
+.ad-box {
+    display: none;
+    overflow: hidden;
+}
+
+.ad-box.ad-on {
+    display: block;
+}
+
+/* 未填充成功时收起空位（site.js 检测 data-ad-status="unfilled"） */
+.ad-box.ad-empty {
+    display: none !important;
+}
+
+/* 预留高度，避免加载后把下方内容顶下去（CLS） */
+.ad-box.ad-on {
+    min-height: 90px;
+}
+
+.ad-box-top.ad-on {
+    min-height: 100px;
+}
+
+.ad-box-inline.ad-on {
+    min-height: 130px;
+}
+
+.ad-box-side.ad-on {
+    min-height: 260px;
+}
+
+.ad-box-article-top.ad-on {
+    min-height: 130px;
+}
+
+.ad-box-article-bottom.ad-on {
+    min-height: 130px;
+}
+
+/* 各位置的间距与宽度 */
+.ad-box-top {
+    max-width: 1000px;
+    margin: 10px auto 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.ad-box-inline {
+    margin: 18px 0;
+}
+
+.ad-box-side {
+    margin-bottom: 15px;
+    background: #fff;
+}
+
+.ad-box-article-top {
+    margin: 4px 0 20px;
+}
+
+.ad-box-article-bottom {
+    margin: 26px 0 0;
+}
+
+/* 本地预览用的占位框（仅在 site-config.js 里 testMode: true 时出现） */
+.ad-box.ad-test {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90px;
+    background: #f6f7f9;
+    border: 1px dashed #c9ccd1;
+    border-radius: 4px;
+    color: #9aa0a6;
+    font-size: 13px;
+    letter-spacing: .5px;
+}
+
+@media (max-width: 999px) {
+    .ad-box-top {
+        margin-top: 6px;
+        padding: 0 8px;
+    }
+
+    .ad-box.ad-test {
+        min-height: 80px;
+    }
+}
+
+/* ------------------------------------------------------------
+ * 2. Cookie 同意横幅
+ * ---------------------------------------------------------- */
+.cookie-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: #fff;
+    border-top: 1px solid #e3e3e3;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, .08);
+    padding: 14px 0;
+    animation: cookie-bar-in .25s ease-out;
+}
+
+@keyframes cookie-bar-in {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.cookie-bar-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-sizing: border-box;
+}
+
+.cookie-bar-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.cookie-bar-text a {
+    color: #2f9e44;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.cookie-bar-actions {
+    display: flex;
+    gap: 10px;
+    flex: none;
+}
+
+.cookie-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #d0d0d0;
+    background: #fff;
+    color: #555;
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+.cookie-btn:hover {
+    background: #f5f5f5;
+}
+
+.cookie-btn-primary {
+    background: #4CAF50;
+    border-color: #4CAF50;
+    color: #fff;
+}
+
+.cookie-btn-primary:hover {
+    background: #43a047;
+}
+
+/* 横幅弹出时给页面底部留出空间，避免页脚被盖住 */
+body.has-cookie-bar {
+    padding-bottom: 90px;
+}
+
+@media (max-width: 999px) {
+    .cookie-bar-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .cookie-bar-actions {
+        justify-content: flex-end;
+    }
+
+    body.has-cookie-bar {
+        padding-bottom: 150px;
+    }
+}
+
+/* ------------------------------------------------------------
+ * 3. 内页通用样式（隐私政策 / 关于我们 / 404）
+ * ---------------------------------------------------------- */
+.legal-page {
+    max-width: 820px;
+    margin: 20px auto;
+    padding: 26px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    line-height: 1.85;
+    color: #555;
+    box-sizing: border-box;
+}
+
+.legal-page h1 {
+    font-size: 26px;
+    color: #333;
+    margin: 0 0 8px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4CAF50;
+}
+
+.legal-page h2 {
+    font-size: 20px;
+    color: #333;
+    margin: 26px 0 12px;
+}
+
+.legal-page h3 {
+    font-size: 16px;
+    color: #444;
+    margin: 20px 0 10px;
+}
+
+.legal-page p,
+.legal-page li {
+    margin: 0 0 10px;
+    font-size: 15px;
+}
+
+.legal-page ul,
+.legal-page ol {
+    padding-left: 22px;
+    margin: 0 0 14px;
+}
+
+.legal-page a {
+    color: #2f9e44;
+}
+
+.legal-page .updated {
+    font-size: 13px;
+    color: #999;
+    margin: 0 0 20px;
+}
+
+.legal-page table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+}
+
+.legal-page th,
+.legal-page td {
+    border: 1px solid #e2e2e2;
+    padding: 8px 10px;
+    font-size: 14px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.legal-page th {
+    background: #f5f7fa;
+    color: #333;
+}
+
+.legal-page .contact-box {
+    background: #f5f9f5;
+    border-left: 4px solid #4CAF50;
+    padding: 14px 16px;
+    border-radius: 4px;
+    margin: 16px 0;
+}
+
+.legal-page .page-nav {
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+}
+
+.legal-page .page-nav a {
+    margin-right: 18px;
+}
+
+.error-page {
+    text-align: center;
+    padding: 70px 26px;
+}
+
+.error-page .code {
+    font-size: 76px;
+    font-weight: 700;
+    line-height: 1;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.error-page p {
+    font-size: 15px;
+    color: #666;
+}
+
+.error-page .err-actions {
+    margin-top: 24px;
+}
+
+.error-page .err-actions a {
+    display: inline-block;
+    padding: 10px 26px;
+    background: #4CAF50;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* ------------------------------------------------------------
+ * 4. 页脚补充链接
+ * ---------------------------------------------------------- */
+.footer-links {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #777;
+}
+
+.footer-links a {
+    color: #777;
+    margin: 0 6px;
+}
+
+.footer-links a:hover {
+    color: #4CAF50;
+}
+
+/* ------------------------------------------------------------
+ * 5. 文章页统一样式
+ *    （原先分散在每篇文章底部的 <style> 里，现统一到此处，
+ *      新增文章不需要再复制这一段）
+ * ---------------------------------------------------------- */
+.article-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.article-content h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4CAF50;
+}
+
+.article-body {
+    line-height: 1.8;
+    color: #555;
+}
+
+.article-body h2 {
+    font-size: 22px;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.article-body h3 {
+    font-size: 18px;
+    color: #444;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.article-body p {
+    margin-bottom: 15px;
+}
+
+.article-body ul,
+.article-body ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.article-body ul li,
+.article-body ol li {
+    margin-bottom: 8px;
+}
+
+.article-body strong {
+    color: #333;
+}
+
+/* 文章里的引用段落（em 当引用块用） */
+.article-body em {
+    background: #f5f5f5;
+    padding: 10px;
+    display: block;
+    margin: 15px 0;
+    border-left: 4px solid #4CAF50;
+    font-style: normal;
+}
+
+/* 文章里的对比表格 */
+.comparison-table {
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th {
+    background: #4CAF50;
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.comparison-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.tips {
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.tips a {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+.back-home {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-home .ui-btn {
+    display: inline-block;
+    padding: 10px 30px;
+    background: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* 文章底部的相关阅读 */
+.related-posts {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.related-posts h3 {
+    font-size: 17px;
+    color: #333;
+    margin: 0 0 12px;
+}
+
+.related-posts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.related-posts li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.related-posts li:before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: 700;
+}
+
+.related-posts a {
+    color: #2f9e44;
+}
+
+/* ------------------------------------------------------------
+ * 6. 首页内容区块（使用指南 / 常见问题 / 知识列表）
+ * ---------------------------------------------------------- */
+.content-block {
+    margin-top: 24px;
+}
+
+.content-block h2 {
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 12px;
+    padding-left: 10px;
+    border-left: 4px solid #4CAF50;
+    line-height: 1.3;
+}
+
+.content-block p,
+.content-block li {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #555;
+}
+
+.content-block p {
+    margin: 0 0 12px;
+}
+
+.content-block ul,
+.content-block ol {
+    padding-left: 20px;
+    margin: 0 0 12px;
+}
+
+.content-block li {
+    margin-bottom: 6px;
+}
+
+.guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px;
+}
+
+.guide-table th,
+.guide-table td {
+    border: 1px solid #e2e2e2;
+    padding: 8px 10px;
+    font-size: 13px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.guide-table th {
+    background: #f5f7fa;
+    color: #333;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* 常见问题 */
+.faq-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.faq-item:last-child {
+    border-bottom: 0;
+}
+
+.faq-q {
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 8px;
+    line-height: 1.6;
+}
+
+.faq-a {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #555;
+    margin: 0;
+}
+
+.faq-a a {
+    color: #2f9e44;
+}
+
+/* ------------------------------------------------------------
+ * 7. 知识栏目索引页的文章列表
+ * ---------------------------------------------------------- */
+.post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.post-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.post-list li:last-child {
+    border-bottom: 0;
+}
+
+.post-list .post-title {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.post-list .post-title:hover {
+    color: #4CAF50;
+}
+
+.post-list .post-desc {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.section-lead {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #666;
+    margin: 0 0 6px;
+}
+
+/* ------------------------------------------------------------
+ * 9. 恢复知识模块显示
+ *    原模板在桌面端媒体查询里用 !important 强制隐藏了这三个
+ *    知识模块（大概是当年侧栏已有链接，避免重复）。现在这些
+ *    模块承载了真实内容，这里覆盖恢复显示（site.css 在
+ *    my-common.min.css 之后加载，同权重 !important 后者生效）。
+ * ---------------------------------------------------------- */
+#business_atc_recmd_mod,
+#repay_atc_recmd_mod {
+    display: block !important;
+}
+
+/* 「查看全部」入口 */
+.more-posts {
+    padding: 12px 10px 0;
+    margin: 0;
+    font-size: 14px;
+}
+
+.more-posts a {
+    color: #2f9e44;
+}
+
+/* ------------------------------------------------------------
+ * 8. 侧栏说明块（替代原先的友情链接区）
+ * ---------------------------------------------------------- */
+.side-note {
+    padding: 4px 12px 14px;
+    background: #fff;
+}
+
+.side-note p {
+    font-size: 13px;
+    line-height: 1.85;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+.side-note p:last-child {
+    margin-bottom: 0;
+}
+
+.side-note-links a {
+    display: inline-block;
+    margin-right: 14px;
+    font-size: 13px;
+    color: #2f9e44;
+}

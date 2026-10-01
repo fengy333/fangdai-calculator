@@ -1,0 +1,10 @@
+{
+  "name": "fangdai-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "房贷计算器 —— 纯静态站点，部署在 Cloudflare Pages",
+  "scripts": {
+    "dev": "npx wrangler pages dev . --port 8788",
+    "deploy": "npx wrangler pages deploy . --project-name=fangdai-calculator"
+  }
+}

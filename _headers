@@ -1,0 +1,44 @@
+# ============================================================
+#  Cloudflare Pages 配置
+#  文档：https://developers.cloudflare.com/pages/configuration/headers/
+# ------------------------------------------------------------
+#  说明：这个文件不会作为静态资源对外提供，而是由 Cloudflare 边缘
+#  节点解析后，作为响应头返回。
+# ============================================================
+
+# ---- 全站安全头 ----
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=15552000
+
+# ---- HTML 不做长缓存，保证改完立刻生效 ----
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# ---- 静态资源 ----
+# 注意：这里的文件名没有内容哈希，所以不能用 immutable 长缓存，
+# 否则你改动 css/js 后用户拿到的还是旧文件。
+/css/*
+  Cache-Control: public, max-age=86400
+
+/js/*
+  Cache-Control: public, max-age=86400
+
+/images/*
+  Cache-Control: public, max-age=604800
+
+# ---- 纯文本文件的编码（避免中文乱码 / 被浏览器下载） ----
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+
+/ads.txt
+  Content-Type: text/plain; charset=utf-8
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8

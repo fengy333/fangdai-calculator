@@ -1,0 +1,10 @@
+# 房贷计算器 —— Cloudflare Pages 部署配置
+# 文档：https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+
+name = "fangdai-calculator"
+compatibility_date = "2026-09-30"
+
+# 纯静态站点，没有构建步骤，直接把仓库根目录作为发布目录。
+# 如果你在执行 wrangler 命令时遇到「目录重复指定」之类的报错，
+# 把下面这行删掉，改用显式传参：npx wrangler pages deploy .
+pages_build_output_dir = "."

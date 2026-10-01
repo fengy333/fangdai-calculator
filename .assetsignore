@@ -1,0 +1,15 @@
+# wrangler 上传静态资源时忽略这些文件（与 .gitignore 同格式）
+# 注意：不要把 _headers 和 _redirects 写进来，它们是站点功能文件
+.workbuddy
+.git
+.gitignore
+.gitattributes
+.assetsignore
+.dev.vars
+.DS_Store
+.wrangler
+node_modules
+README.md
+package.json
+package-lock.json
+wrangler.toml

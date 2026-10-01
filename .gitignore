@@ -1,0 +1,10 @@
+.idea
+.claude
+.vscode
+.workbuddy
+node_modules
+.wrangler
+.dev.vars
+.DS_Store
+package-lock.json
+git.txt
